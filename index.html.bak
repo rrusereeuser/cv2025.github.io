@@ -9,7 +9,7 @@
         content="">
   <meta name="keywords" content="Talking head, Audio-driven, Facial animation">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>CCTalk</title>
+  <title>CCTalker</title>
 
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script> -->
@@ -149,7 +149,7 @@
               <span class="link-block">
                 <a href=" "
 =======
-                <a href="https://arxiv.org/abs/2404.01647"
+                <a href="https://arxiv.org/"
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                       <i class="fas fa-file-pdf"></i>
@@ -182,7 +182,7 @@
               </span>
               <!-- Codes Link. -->
               <span class="link-block">
-                <a href="https://github.com/wangryhen/HSFTalk_Anonymous"
+                <a href="https://github.com/rrusereeuser/CCTalker"
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                       <i class="fab fa-github"></i>
@@ -216,7 +216,7 @@
            </div>
         </div>
         <h3 class="subtitle has-text-centered">
-        Demos, comparison with CodeTalker and FaceFormer. 
+        Demos, comparison with FaceDiffuser, ProbTalk3D, CodeTalker, FaceFormer... 
         </h3>
     </div>
 </section>
@@ -273,7 +273,7 @@
       <div class="column is-four-fifths">
         <h2 class="title is-3">Proposed Method</h2>
         <div class="content has-text-justified">
-          <center><img src="./data/CCTalker.png" alt="synctalk" width="600" ></center>
+          <center><img src="./data/CCTalker.png" alt="CCTalker" width="600" ></center>
           <p>
             <br>
                Illustration of the proposed CCTalker. The left half shows a diffusion‐based denoiser, conditioning on HuBERT audio features, style embeddings, and timestep MLP, built on a Transformer+GRU backbone, 
@@ -293,7 +293,7 @@
              Overview of hierarchical speech feature-based landmark displacements encoder with a weighted generation module.
           </p>
         </div> -->
-    </div>
+  <!--  </div>  -->
     
     <!--/ Proposed Method. -->
 </section>
@@ -317,10 +317,10 @@
 <footer class="gray-background">
   <div class="container">
       <div class="content has-text-centered">
-          <a class="icon-link" href="https://arxiv.org/abs/2404.01647">
+          <a class="icon-link" href="https://arxiv.org/">
               <i class="fas fa-file-pdf"></i> <span>Paper</span>
           </a>
-          <a class="icon-link" href="https://github.com/wangryhen/HSFTalk_Anonymous" class="external-link" disabled>
+          <a class="icon-link" href="https://github.com/rrusereeuser/CCTalker" class="external-link" disabled>
               <i class="fab fa-github"></i> <span>Code</span>
           </a>
       </div>
