@@ -7,7 +7,7 @@
   <meta charset="utf-8">
   <meta name="description"
         content="">
-  <meta name="keywords" content="Talking head, Audio-driven, Facial disentanglement, EDTalk">
+  <meta name="keywords" content="Talking head, Audio-driven, Facial animation">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>HiSTalk</title>
 
@@ -111,7 +111,7 @@
     <div class="container is-max-desktop">
       <div class="columns is-centered">
         <div class="column has-text-centered">
-          <h1 class="title is-1 publication-title"> HiSTalk: Hierarchical Speech Feature-based Landmark Displacements for 3D Talking Head Animation
+          <h1 class="title is-1 publication-title"> CCTalker: When Compensatory Control Theory Meets 3D Emotional Talking Head Animation
           </h1>
 
           <!--div class="is-size-5 publication-authors">
@@ -234,31 +234,18 @@
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
           <p>
-            Speech-driven 3D facial animation has gained significant attention for its ability to create realistic and expressive facial animations in 3D space based on speech. 
-            Landmarks can comprehensively and efficiently describe speech-related movements.
-            However, existing methods do not fully exploit the implicit context information of speech, but rather simplify using single-level (i. e., frame-level) speech features to learn landmarks and 
-            then map them into the entire facial animation. 
-            They largely overlooked the relationships between landmarks in distinct temporal regions and different-level speech features (e. g., phonemes, words, and utterances), resulting in over-smoothed 
-            facial movements. In the present work, we propose a novel framework, namely <strong>Hierarchical Speech feature-based 3D Talking head animation (HiSTalk)</strong>, 
-            to explore the correlations between different-level speech features and facial landmarks. 
-            This framework consists of two modules: Hierarchical Speech Features to Sparse landmark displacements (HSF2S) and Sparse landmarks to Dense landmarks (S2D). 
-            Specifically, <strong>HSF2S</strong> is a hierarchical structure-based encoder to establish the correlations between sparse facial landmark displacements and different-level speech features; 
-            then, <strong>S2D</strong> -- a Transformer-based multi-branch fusion decoder -- generates the corresponding dense motion fields based on these sparse landmarks. 
-            Furthermore, HSF2S includes a squeeze and extraction weight generation mechanism to calculate the contributions of different-level speech features to landmarks, 
-            and S2D includes an attention-based fusion operation to synthesize dense facial deformations, which ensures plausible lip synchronization and facial activities. 
-            Extensive qualitative and quantitative experiments and user studies indicate that our method outperforms existing state-of-the-art methods.
-<!--              Speech-driven 3D facial animation has gained significant attention for its ability to create realistic and expressive facial animations in 3D space 
-             based on speech. Landmarks can comprehensively and efficiently describe speech-related movements. However, existing methods do not fully exploit the 
-             implicit context information of speech, but rather simplify using single-level (i. e., frame-level) speech features to learn landmarks and then map 
-             them into the entire facial animation. They largely overlooked the relationships between landmarks in distinct temporal regions and different-level 
-             speech features (e. g., phonemes, words, and utterances), resulting in over-smoothed facial movements. In the present work, we propose a novel framework, 
-             namely <strong>Hierarchical Speech Featurebased 3D Talking head animation (HSFTalk)</strong>, aiming to explore the correlations between different-level 
-             speech features and facial landmarks. This framework consists of two modules: Hierarchical Speech Features to Sparse landmark displacements (<strong>HSF2S</strong>) 
-             and Sparse landmarks to Dense landmarks (<strong>S2D</strong>). Specifically, HSF2S is a hierarchical structure-based encoder to establish the 
-             correlations between sparse facial landmark displacements and different-level speech features, and then S2D, a transformer-based decoder, generates the corresponding 
-             dense motion fields based on these sparse landmarks. Furthermore, HSF2S includes a weighted generation mechanism to calculate the contributions of different-level 
-             speech features to landmarks, which ensures plausible lip synchronization and facial activities. Extensive qualitative and quantitative experiments 
-             as well as user studies indicate that our method outperforms existing state-of-the-art methods. -->
+            Speech-driven 3D talking-head animation often exhibits uncontrolled phenomena--cross-modal misalignment, speech–expression mismatches, and abrupt transitions--that degrade emotional naturalness 
+            and user experience. Compensatory Control Theory (CCT) in psychology holds that when individuals perceive a loss of control, they actively seek to restore order to alleviate anxiety and regain 
+            psychological balance. Inspired by this insight, we reinterpret these uncontrolled phenomena as ``loss-of-control'' events, and design compensatory mechanisms to restore ``control''. 
+            Based on this perspective, we propose <strong>CCTalker</strong>, 
+            a diffusion-based facial animation generation framework that emulates the full CCT cycle of ``loss-of-control -> compensation -> order restoration” to enhance expressivity in generated 
+            animations. Specifically, CCTalker integrates CCT into three collaborative modules. <strong>Control–Sense Modeling</strong> quantifies target emotion categories and discrete intensities or infers continuous control 
+            strength from audio dynamics, monitors deviations in generated expressions, and applies corrective adjustments to ensure visual-emotion alignment.<strong>Compensatory Dynamic Enhancement</strong> uses dynamic 
+            region detection and strength combiner to identify critical vertices and routes them to the EnhancementNetwork for strengthening under-articulated motion and to the SmoothingNetwork for suppressing 
+            abrupt deformation, thereby recovering lost geometric details and maintaining animation coherence. <strong>Information Order Modeling</strong> enforces CCT-based constraints to realign cross-modal emotional 
+            cues and restore temporal synchronization and overall sequence order between speech and facial motion. Experiments on the 3DMEAD and BIWI datasets demonstrate that CCTalker outperforms state-of-the-art 
+            baselines, validating the effectiveness of CCT mechanisms for generating natural and expressive 3D facial animations.
+
             <br>
             <br>
           </p>
@@ -271,8 +258,8 @@
           <img src="./data/framework.png" alt="synctalk" width="600" ></center>
           <p>
             <br>
-            Given a speech signal as input, our framework HiSTalk can generate realistic 3D talking heads through the Hierarchical Speech Features to Sparse Landmarks (HSF2S) 
-            module and the Sparse Landmarks to Dense Landmarks Displacements (S2D) module.
+            Given a speech signal as input, our framework <strong>CCTalker</strong> can generate realistic 3D talking head animtions through the Compensatory Control 
+            Theory <strong>(CCT)</strong> based diffusion processes.
           </p>
 
           <!-- <p>
@@ -291,31 +278,26 @@
       <div class="column is-four-fifths">
         <h2 class="title is-3">Proposed Method</h2>
         <div class="content has-text-justified">
-          <center><img src="./data/pipeline.png" alt="synctalk" width="600" ></center>
+          <center><img src="./data/CCTalker.png" alt="synctalk" width="600" ></center>
           <p>
             <br>
-            Pipeline of our proposed HiSTalk. HiSTalk, learning the correlations between HSF and facial landmarks, receives a raw audio 𝐴 as input and generates a sequence of 
-            3D facial animation from sparse to dense landmark displacements. The Acoustic Feature Extractor is Wav2Vec 2.0, and the Hierarchical Feature Extractor follows the 
-            SpeechFormer++ block. The weighted generation mechanism calculates the contribution of frame-level, phoneme-level, word-level, and utterance-level speech features 
-            to landmark displacements. Then S2D uses a Transformer-based decoder to generate the dense landmark displacement sequences for rendering the animation.
+               Illustration of the proposed CCTalker. The left half shows a diffusion‐based denoiser, conditioning on HuBERT audio features, style embeddings, and timestep MLP, built on a Transformer+GRU backbone, 
+            with three CCT‐inspired modules (right half) that contain the “loss-of-control -> compensation -> order restoration” cycle: 
+            (1) Control–Sense Modeling gates mesh residuals via $\gamma_t$; 
+            (2) Compensatory Dynamic Enhancement uses per‐vertex speed masks and Strength Combiner weights to route vertices through high‐frequency enhancement or low‐frequency smoothing; 
+            (3) Information Order Modeling enforces semantic alignment, temporal coherence, and physical plausibility.
           </p>
 
         </div>
 
         
-        <div class="content has-text-justified">
+      <!--  <div class="content has-text-justified">
           <center><img src="./data/encoder.png" alt="synctalk" width="600" ></center>
           <p>
             <br>
              Overview of hierarchical speech feature-based landmark displacements encoder with a weighted generation module.
           </p>
-          <!-- <p>
-
-          </p>
-          <p>
-
-          </p> -->
-        </div>
+        </div> -->
     </div>
     
     <!--/ Proposed Method. -->
@@ -325,8 +307,8 @@
 <section class="section" id="BibTeX">
   <div class="container is-max-desktop content">
     <h2 class="title">BibTeX</h2>
-    <pre><code>@article{2025histalk,
-  title={HiSTalk: Hierarchical Speech Feature-based Landmark Displacements for 3D Talking Head Animation},
+    <pre><code>@article{2025cctalker,
+  title={CCTalker: When Compensatory Control Theory Meets 3D Emotional Talking Head Animation},
   author={},
   journal={arXiv preprint arXiv},
   year={2025}
