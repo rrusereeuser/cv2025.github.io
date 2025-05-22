@@ -163,7 +163,7 @@
               </span>
               <!-- Codes Link. -->
               <span class="link-block">
-                <a href="https://github.com/rrusereeuser/CCTalker"
+                <a href="https://anonymous.4open.science/r/CCTalker-D626/README.md"
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                       <i class="fab fa-github"></i>
@@ -306,7 +306,7 @@
           <a class="icon-link" href="https://arxiv.org/">
               <i class="fas fa-file-pdf"></i> <span>Paper</span>
           </a>
-          <a class="icon-link" href="https://github.com/rrusereeuser/CCTalker" class="external-link" disabled>
+          <a class="icon-link" href="https://anonymous.4open.science/r/CCTalker-D626/README.md" class="external-link" disabled>
               <i class="fab fa-github"></i> <span>Code</span>
           </a>
       </div>
