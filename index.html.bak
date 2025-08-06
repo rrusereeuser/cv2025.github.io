@@ -119,9 +119,19 @@
               Speech-driven 3D talking-head animation often exhibits uncontrolled phenomena, such as cross-modal misalignment, speech–expression mismatches, and abrupt transitions, which degrade emotional naturalness and erode the viewer’s sense of control. Compensatory Control Theory (CCT) in psychology posits that when individuals perceive a loss of control, they seek structure and order to restore balance. Inspired by this, we reinterpret such animation failures as “loss-of-control” events and design compensatory mechanisms to restore order. We introduce CCTalker, a diffusion-based framework that integrates three modules to enhance expressivity in generated animations collaboratively, each executing its own full CCT cycle of “loss-of-control → compensation → order restoration”. Specifically, Control–Sense Modeling (CSM) corrects frame-level deviations between intended emotion cues or continuous control strength of audio dynamics and mesh outputs. Compensatory Dynamic Enhancement (CDE) applies high-frequency enhancement or spatio-temporal smoothing to recover fine-grained details and smooth abrupt motions. Information Order Modeling (IOM) enforces causal temporal updates and cross-modal alignment constraints to realign emotional cues, temporal synchronization, and sequence-level continuity. Experiments on the 3DMEAD and BIWI datasets demonstrate that CCTalker outperforms state-of-the-art baselines, validating the effectiveness of CCT mechanisms for generating natural and expressive 3D facial animations.
             </p>
           </div>
+          
           <!-- Methodology -->
           <div class="column is-half content">
             <h3 class="title is-4">Methodology</h3>
+
+            <!-- Method diagram -->
+            <figure class="image is-3by2">
+              <img src="./paper_images/CCTalker.png" alt="Overview of CCTalker architecture: diffusion backbone plus CSM, CDE, IOM modules">
+              <figcaption class="has-text-centered">
+                <em>Figure 1.</em> CCTalker framework: (1) Control–Sense Modeling, (2) Compensatory Dynamic Enhancement, (3) Information Order Modeling.
+              </figcaption>
+            </figure>
+
             <p>
               CCTalker is a diffusion-based framework embedding three parallel modules, each implementing a full CCT cycle: Control–Sense Modeling (CSM), Compensatory Dynamic Enhancement (CDE), and Information Order Modeling (IOM). These modules operate in a progressive “align → refine → integrate” flow along the generation timeline, collectively synthesizing emotionally faithful and temporally coherent 3D facial animations.
             </p>
