@@ -124,18 +124,19 @@
       </div>
     </section>
 
-    <!-- Methodology -->
-    <section class="section">
-      <div class="container content">
-        <h3 class="title is-4">Methodology</h3>
+<!-- Methodology -->
+<section class="section">
+  <div class="container content">
+    <h3 class="title is-4">Methodology</h3>
 
-        <!-- Centered Method diagram -->
-        <figure class="method-figure">
-          <img src="./paper_images/CCTalker.png" alt="Overview of CCTalker architecture: diffusion backbone plus CSM, CDE, IOM modules">
-          <figcaption>
-            <em>Figure 1.</em> CCTalker framework: (1) Control–Sense Modeling, (2) Compensatory Dynamic Enhancement, (3) Information Order Modeling.
-          </figcaption>
-        </figure>
+    <!-- Centered Method diagram -->
+    <figure class="method-figure">
+      <img src="./paper_images/CCTalker.png"
+           alt="Overview of CCTalker architecture: diffusion backbone plus CSM, CDE, IOM modules">
+      <figcaption>
+        <em>Figure 1.</em> CCTalker framework: (1) Control–Sense Modeling, (2) Compensatory Dynamic Enhancement, (3) Information Order Modeling.
+      </figcaption>
+    </figure>
 
         <p>
           CCTalker is a diffusion-based framework embedding three parallel modules, each implementing a full CCT cycle: Control–Sense Modeling (CSM), Compensatory Dynamic Enhancement (CDE), and Information Order Modeling (IOM). These modules operate in a progressive “align → refine → integrate” flow along the generation timeline, collectively synthesizing emotionally faithful and temporally coherent 3D facial animations.
