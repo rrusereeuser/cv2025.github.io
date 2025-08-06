@@ -15,6 +15,8 @@
       background: linear-gradient(135deg, #1abc9c, #3498db);
       color: #ffffff;
       position: relative;
+      padding-top: 3rem;
+      padding-bottom: 3rem;
     }
     .hero::before {
       content: "";
@@ -73,8 +75,8 @@
     </div>
   </header>
 
-  <!-- Hero / Title -->
-  <section class="hero is-fullheight-with-navbar">
+  <!-- Hero / Title (medium height) -->
+  <section class="hero is-medium">
     <div class="hero-body">
       <div class="container has-text-centered">
         <h1 class="title is-1">CCTalker</h1>
