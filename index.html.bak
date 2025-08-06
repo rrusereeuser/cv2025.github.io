@@ -10,23 +10,48 @@
   <link href="https://fonts.googleapis.com/css?family=Noto+Sans:400,700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./static/css/bulma.min.css">
   <style>
-    /* Midnight blue hero */
+    /* Hero gradient background and text styling */
     .hero {
-      background-color: #2c3e50; /* dark blue-gray */
-      color: #ecf0f1;            /* light text */
+      background: linear-gradient(135deg, #1abc9c, #3498db);
+      color: #ffffff;
+      position: relative;
     }
-    /* Accent buttons */
-    .button.is-primary {
-      background-color: #e67e22; /* orange accent */
-      border-color: transparent;
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.3);
+      pointer-events: none;
     }
-    .button.is-primary:hover {
+    .hero .hero-body {
+      position: relative;
+    }
+    .hero .title,
+    .hero .subtitle {
+      color: #ffffff;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.6);
+    }
+    .hero .button.is-primary {
+      background-color: #f39c12;
+      border: none;
+    }
+    .hero .button.is-primary:hover {
       background-color: #d35400;
+    }
+
+    /* Fixed-top navbar z-index */
+    .navbar.is-fixed-top {
+      z-index: 1000;
+    }
+
+    /* Main padding to avoid overlap with fixed navbar */
+    main {
+      padding-top: 3.5rem;
     }
   </style>
 </head>
 <body>
-  <!-- Navbar -->
+  <!-- Top Navigation -->
   <header class="navbar is-fixed-top has-shadow">
     <div class="container">
       <div class="navbar-brand">
@@ -48,19 +73,23 @@
     </div>
   </header>
 
-  <!-- Hero -->
+  <!-- Hero / Title -->
   <section class="hero is-fullheight-with-navbar">
     <div class="hero-body">
       <div class="container has-text-centered">
         <h1 class="title is-1">CCTalker</h1>
-        <h2 class="subtitle is-4">When Compensatory Control Theory Meets 3D Emotional Talking Head Animation</h2>
-        <a href="#teaser" class="button is-primary is-medium">Watch Demo</a>
+        <h2 class="subtitle is-4">
+          When Compensatory Control Theory Meets 3D Emotional Talking Head Animation
+        </h2>
+        <a href="#teaser" class="button is-primary is-medium" aria-label="Watch Demo">
+          Watch Demo
+        </a>
       </div>
     </div>
   </section>
 
   <main>
-    <!-- Teaser -->
+    <!-- Teaser Video -->
     <section id="teaser" class="section">
       <div class="container">
         <div class="columns is-centered">
@@ -71,16 +100,18 @@
                 Your browser does not support the video tag.
               </video>
             </div>
-            <p class="has-text-centered">Comparisons with FaceDiffuser, ProbTalk3D, CodeTalker, FaceFormer…</p>
+            <p class="has-text-centered">
+              Demos and comparisons with FaceDiffuser, ProbTalk3D, CodeTalker, FaceFormer…
+            </p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Abstract & Method side by side on wide screens -->
+    <!-- Abstract & Method side by side -->
     <section class="section">
       <div class="container">
-        <div class="columns">
+        <div class="columns is-variable is-8">
           <!-- Abstract -->
           <div class="column is-half content">
             <h3 class="title is-4">Abstract</h3>
@@ -88,7 +119,7 @@
               Speech-driven 3D talking-head animation often exhibits uncontrolled phenomena, such as cross-modal misalignment, speech–expression mismatches, and abrupt transitions, which degrade emotional naturalness and erode the viewer’s sense of control. Compensatory Control Theory (CCT) in psychology posits that when individuals perceive a loss of control, they seek structure and order to restore balance. Inspired by this, we reinterpret such animation failures as “loss-of-control” events and design compensatory mechanisms to restore order. We introduce CCTalker, a diffusion-based framework that integrates three modules to enhance expressivity in generated animations collaboratively, each executing its own full CCT cycle of “loss-of-control → compensation → order restoration”. Specifically, Control–Sense Modeling (CSM) corrects frame-level deviations between intended emotion cues or continuous control strength of audio dynamics and mesh outputs. Compensatory Dynamic Enhancement (CDE) applies high-frequency enhancement or spatio-temporal smoothing to recover fine-grained details and smooth abrupt motions. Information Order Modeling (IOM) enforces causal temporal updates and cross-modal alignment constraints to realign emotional cues, temporal synchronization, and sequence-level continuity. Experiments on the 3DMEAD and BIWI datasets demonstrate that CCTalker outperforms state-of-the-art baselines, validating the effectiveness of CCT mechanisms for generating natural and expressive 3D facial animations.
             </p>
           </div>
-          <!-- Method -->
+          <!-- Methodology -->
           <div class="column is-half content">
             <h3 class="title is-4">Methodology</h3>
             <p>
