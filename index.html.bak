@@ -1,334 +1,117 @@
 <!DOCTYPE html>
-<html>
-  <!--script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script-->
-
+<html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="description"
-        content="">
-  <meta name="keywords" content="Talking head, Audio-driven, Facial animation">
+  <title>CCTalker: 3D Emotional Talking Head Animation</title>
+  <meta name="description" content="CCTalker—基于Compensatory Control Theory的3D情感化语音驱动面部动画生成框架。">
+  <meta name="keywords" content="CCTalker, Talking Head, Audio-driven, Facial Animation, Diffusion">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>CCTalker</title>
-
-  <!-- Global site tag (gtag.js) - Google Analytics -->
-  <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script> -->
-  <script>
-    window.dataLayer = window.dataLayer || [];
-
-    function gtag() {
-      dataLayer.push(arguments);
-    }
-
-    gtag('js', new Date());
-
-    gtag('config', 'G-PYVRSFMDRL');
-    
-   
-  </script>
-  <!--style>
-    body {
-    margin: 0;
-    padding: 0;
-    padding-left: 80px;  /* 左边距 */
-    padding-right: 80px; /* 右边距 */
-    margin-left: 80px;  /* 左边距 */
-    margin-right: 80px; /* 右边距 */
-  }
-  
-  
-  </style-->
-  
-  <style>
-  	.gray-background {
-    background-color: #999999;}
-   </style>
-
-  <link rel="icon" href="github-fill.png" sizes="16x16">
-  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
-        rel="stylesheet">
-
-  <link rel="stylesheet" href="./static/css/bulma.min.css">
-  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
-  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
-  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
-  <link rel="stylesheet"
-        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
-  <link rel="stylesheet" href="./static/css/index.css">
   <link rel="icon" href="./static/images/favicon.svg">
-
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script defer src="./static/js/fontawesome.all.min.js"></script>
-  <script src="./static/js/bulma-carousel.min.js"></script>
-  <script src="./static/js/bulma-slider.min.js"></script>
-  <script src="./static/js/index.js"></script>
+  <link href="https://fonts.googleapis.com/css?family=Noto+Sans:400,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
 </head>
 <body>
-
-<!-- <nav class="navbar" role="navigation" aria-label="main navigation">
-  <div class="navbar-brand">
-    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-    </a>
-  </div>
-  <div class="navbar-menu">
-    <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
-      <a class="navbar-item" href="https://keunhong.com">
-      <span class="icon">
-          <i class="fas fa-home"></i>
-      </span>
-      </a>
-
-      <div class="navbar-item has-dropdown is-hoverable">
-        <a class="navbar-link">
-          More Research
+  <header class="navbar is-fixed-top has-shadow">
+    <div class="container">
+      <div class="navbar-brand">
+        <a class="navbar-item" href="#">
+          <strong>CCTalker</strong>
         </a>
-        <div class="navbar-dropdown">
-          <a class="navbar-item" href="https://hypernerf.github.io">
-            HyperNeRF
-          </a>
-          <a class="navbar-item" href="https://nerfies.github.io">
-            Nerfies
-          </a>
-          <a class="navbar-item" href="https://latentfusion.github.io">
-            LatentFusion
-          </a>
-          <a class="navbar-item" href="https://photoshape.github.io">
-            PhotoShape
-          </a>
+        <a role="button" class="navbar-burger" data-target="navMenu">
+          <span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span>
+        </a>
+      </div>
+      <div id="navMenu" class="navbar-menu">
+        <div class="navbar-end">
+          <a href="https://arxiv.org/"        class="navbar-item" aria-label="Paper on arXiv">Paper</a>
+          <a href="https://anonymous.4open.science/r/CCTalker-D626/README.md" class="navbar-item" aria-label="Code on GitHub">Code</a>
+          <a href="#teaser"                   class="navbar-item" aria-label="Demo Video">Video</a>
+          <a href="#bibtex"                   class="navbar-item" aria-label="BibTeX Entry">BibTeX</a>
         </div>
       </div>
     </div>
+  </header>
 
-  </div>
-</nav> -->
-
-
-<section class="hero">
-  <div class="hero-body">
-    <div class="container is-max-desktop">
-      <div class="columns is-centered">
-        <div class="column has-text-centered">
-          <h1 class="title is-1 publication-title"> CCTalker: When Compensatory Control Theory Meets 3D Emotional Talking Head Animation
-          </h1>
-
-          <div class="column has-text-centered">
-            <div class="publication-links">
-              <!-- PDF Link. -->
-              <!--span class="link-block">
-                <a href="https://arxiv.org/abs/2404.01647"
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                      <i class="fas fa-file-pdf"></i>
-                  </span>
-                  <span>Paper</span>
-                </a>
-              </span-->
-              
-              <span class="link-block">
-                <a href=" "
-=======
-                <a href="https://arxiv.org/"
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                      <i class="fas fa-file-pdf"></i>
-                  </span>
-                  <span>Paper</span>
-                </a>
-              
-              </span>
-              <span class="link-block">
-                <a href=" "
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                      <i class="ai ai-arxiv"></i>
-                  </span>
-                  <span>arXiv</span>
-                </a>
-              </span>
-
-              <!-- Video Link. -->
-              <span class="link-block">
-                <a href="./data/CCTalker_demos.mp4"
-=======
-                <a href="#teaser"
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                      <i class="fab fa-youtube"></i>
-                  </span>
-                  <span>Video</span>
-                </a>
-              </span>
-              <!-- Codes Link. -->
-              <span class="link-block">
-                <a href="https://anonymous.4open.science/r/CCTalker-D626/README.md"
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                      <i class="fab fa-github"></i>
-                  </span>
-                  <span>Code</span>
-                  </a>
-            </div>
-          </div>
-        </div>
+  <main style="padding-top: 4.5rem;">
+    <!-- Hero / Title -->
+    <section class="section">
+      <div class="container has-text-centered">
+        <h1 class="title is-2">CCTalker</h1>
+        <h2 class="subtitle is-5">When Compensatory Control Theory Meets 3D Emotional Talking Head Animation</h2>
       </div>
-    </div>
-  </div>
-</section>
+    </section>
 
-<!-- Teaser video-->
-
-<section class="section">
-    <div class="container is-max-desktop">
-        <div class="columns is-vcentered is-centered">
-        	<div class="box">
-            <div class="column">
-                <video class="video-player" poster="" id="tree1" controls width="700" >
-                    <source src="./data/CCTalker_demos.mp4">
-                </video>
-                <!--div class="content has-text-justified">
-                    <p style="font-size: 1.2em;">
-                        Singing                  
-                    </p>
-                </div-->
-            </div>
-           </div>
+    <!-- Teaser Video -->
+    <section id="teaser" class="section">
+      <div class="container">
+        <div class="box">
+          <video controls poster="./data/teaser.jpg" style="width:100%; height:auto;" aria-label="CCTalker Demo Video">
+            <source src="./data/CCTalker_demos.mp4" type="video/mp4">
+            您的浏览器不支持视频播放。
+          </video>
         </div>
-        <h3 class="subtitle has-text-centered">
-        Demos, comparison with FaceDiffuser, ProbTalk3D, CodeTalker, FaceFormer... 
-        </h3>
-    </div>
-</section>
-<!-- End teaser video -->
-
-
-
-
-
-<section class="section">
-  <div class="container is-max-desktop">
-    <!-- Abstract. -->
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
-        <h2 class="title is-3">Abstract</h2>
-        <div class="content has-text-justified">
-          <p>
-            Speech-driven 3D talking-head animation often exhibits uncontrolled phenomena--cross-modal misalignment, speech–expression mismatches, and abrupt transitions--that degrade emotional naturalness 
-            and user experience. Compensatory Control Theory (CCT) in psychology holds that when individuals perceive a loss of control, they actively seek to restore order to alleviate anxiety and regain 
-            psychological balance. Inspired by this insight, we reinterpret these uncontrolled phenomena as ``loss-of-control'' events, and design compensatory mechanisms to restore ``control''. 
-            Based on this perspective, we propose <strong>CCTalker</strong>, 
-            a diffusion-based facial animation generation framework that emulates the full CCT cycle of ``loss-of-control -> compensation -> order restoration” to enhance expressivity in generated 
-            animations. Specifically, CCTalker integrates CCT into three collaborative modules. <strong>Control–Sense Modeling</strong> quantifies target emotion categories and discrete intensities or infers continuous control 
-            strength from audio dynamics, monitors deviations in generated expressions, and applies corrective adjustments to ensure visual-emotion alignment.<strong>Compensatory Dynamic Enhancement</strong> uses dynamic 
-            region detection and strength combiner to identify critical vertices and routes them to the EnhancementNetwork for strengthening under-articulated motion and to the SmoothingNetwork for suppressing 
-            abrupt deformation, thereby recovering lost geometric details and maintaining animation coherence. <strong>Information Order Modeling</strong> enforces CCT-based constraints to realign cross-modal emotional 
-            cues and restore temporal synchronization and overall sequence order between speech and facial motion. Experiments on the 3DMEAD and BIWI datasets demonstrate that CCTalker outperforms state-of-the-art 
-            baselines, validating the effectiveness of CCT mechanisms for generating natural and expressive 3D facial animations.
-
-            <br>
-            <br>
-          </p>
-        </div>
+        <p class="has-text-centered">Demos, comparison with FaceDiffuser, ProbTalk3D, CodeTalker, FaceFormer…</p>
       </div>
-    </div>
-    </div>
+    </section>
 
-   <!--  <div class="content has-text-justified">
-    	<center>
-          <img src="./data/framework.png" alt="synctalk" width="600" ></center>
-          <p>
-            <br>
-            Given a speech signal as input, our framework <strong>CCTalker</strong> can generate realistic 3D talking head animtions through the Compensatory Control 
-            Theory <strong>(CCT)</strong> based diffusion processes.
-          </p>
-
-          -->
-    
-    
-    <br>
-    <br>
-
-    <!-- Proposed Method. -->
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
-        <h2 class="title is-3">Proposed Method</h2>
-        <div class="content has-text-justified">
-          <center><img src="./paper_images/CCTalker.png" alt="CCTalker" width="600" ></center>
-          <p>
-            <br>
-               Illustration of the proposed CCTalker. The left half shows a diffusion‐based denoiser, conditioning on HuBERT audio features, style embeddings, 
-            and timestep MLP, built on a Transformer+GRU backbone,  with three CCT‐inspired modules (right half) that 
-            contain the “loss-of-control -> compensation -> order restoration” cycle: 
-            (1) Control–Sense Modeling gates mesh residuals via $\gamma_t$; 
-            (2) Compensatory Dynamic Enhancement uses per‐vertex speed masks and Strength Combiner weights to route vertices through high‐frequency enhancement 
-            or low‐frequency smoothing; 
-            (3) Information Order Modeling enforces semantic alignment, temporal coherence, and physical plausibility.
-          </p>
-
-        </div>
+    <!-- Abstract -->
+    <section class="section">
+      <div class="container content">
+        <h3 class="title is-4">Abstract</h3>
+        <p>
+          Speech-driven 3D talking-head animation often exhibits uncontrolled phenomena—cross-modal misalignment, speech–expression mismatches, and abrupt transitions...
+        </p>
       </div>
-    </div>
+    </section>
 
-        
-      <!--  <div class="content has-text-justified">
-          <center><img src="./data/encoder.png" alt="synctalk" width="600" ></center>
-          <p>
-            <br>
-             Overview of hierarchical speech feature-based landmark displacements encoder with a weighted generation module.
-          </p>
-        </div> -->
-  <!--  </div>  -->
-    
-    <!--/ Proposed Method. -->
-</section>
+    <!-- Method -->
+    <section class="section">
+      <div class="container content">
+        <h3 class="title is-4">Proposed Method</h3>
+        <figure class="image is-3by1">
+          <img src="./paper_images/CCTalker.png" alt="CCTalker framework overview">
+        </figure>
+        <p>
+          我们提出的 CCTalker 将 CCT 完整循环“失控→补偿→恢复”引入三大模块：Control–Sense Modeling、Compensatory Dynamic Enhancement、Information Order Modeling...
+        </p>
+      </div>
+    </section>
 
-
-<section class="section" id="BibTeX">
-  <div class="container is-max-desktop content">
-    <h2 class="title">BibTeX</h2>
-    <pre><code>@article{2025cctalker,
+    <!-- BibTeX -->
+    <section id="bibtex" class="section">
+      <div class="container content">
+        <h3 class="title is-4">BibTeX</h3>
+        <pre><code>@article{2025cctalker,
   title={CCTalker: When Compensatory Control Theory Meets 3D Emotional Talking Head Animation},
   author={},
   journal={arXiv preprint arXiv},
   year={2025}
 }</code></pre>
-  </div>
-</section>
-
-
-
-
-<footer class="gray-background">
-  <div class="container">
-      <div class="content has-text-centered">
-          <a class="icon-link" href="https://arxiv.org/">
-              <i class="fas fa-file-pdf"></i> <span>Paper</span>
-          </a>
-          <a class="icon-link" href="https://anonymous.4open.science/r/CCTalker-D626/README.md" class="external-link" disabled>
-              <i class="fab fa-github"></i> <span>Code</span>
-          </a>
       </div>
-      <div class="columns is-centered">
-          <div class="column is-8">
-              <div class="content">
-                  <p style="text-align:center">
-                    This website is licensed under a <a rel="license"
-                    href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
-                    Commons Attribution-ShareAlike 4.0 International License</a>.
-                  </p>
-                  <p style="text-align:center">
-                    Website source code based on the <a
-                    href="https://github.com/nerfies/nerfies.github.io">Nerfies</a> project page.
-                  </p>
+    </section>
+  </main>
 
-              </div>
-          </div>
-      </div>
-  </div>
-</footer>
+  <!-- Footer -->
+  <footer class="footer has-background-grey-darker has-text-white-ter">
+    <div class="content has-text-centered">
+      <p>
+        © 2025 CCTalker • Licensed under <a class="has-text-white" href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>
+      </p>
+    </div>
+  </footer>
 
-
+  <script src="./static/js/jquery.min.js"></script>
+  <script>
+    // Bulma Burger Toggle
+    document.addEventListener('DOMContentLoaded', () => {
+      const burger = document.querySelector('.navbar-burger');
+      const menu   = document.getElementById(burger.dataset.target);
+      burger.addEventListener('click', () => {
+        burger.classList.toggle('is-active');
+        menu.classList.toggle('is-active');
+      });
+    });
+  </script>
 </body>
 </html>
