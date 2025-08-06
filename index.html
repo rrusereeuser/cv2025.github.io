@@ -25,30 +25,32 @@
       background: rgba(0,0,0,0.3);
       pointer-events: none;
     }
-    .hero .hero-body {
-      position: relative;
-    }
+    .hero .hero-body { position: relative; }
     .hero .title,
     .hero .subtitle {
       color: #ffffff;
       text-shadow: 0 2px 4px rgba(0,0,0,0.6);
     }
     .hero .button.is-primary {
-      background-color: #f39c12;
-      border: none;
+      background-color: #f39c12; border: none;
     }
     .hero .button.is-primary:hover {
       background-color: #d35400;
     }
 
     /* Fixed-top navbar z-index */
-    .navbar.is-fixed-top {
-      z-index: 1000;
-    }
-
+    .navbar.is-fixed-top { z-index: 1000; }
     /* Main padding to avoid overlap with fixed navbar */
-    main {
-      padding-top: 3.5rem;
+    main { padding-top: 3.5rem; }
+
+    /* Method diagram sizing */
+    .method-figure {
+      max-width: 800px;
+      margin: 1.5rem auto;
+    }
+    .method-figure img {
+      width: 100%;
+      height: auto;
     }
   </style>
 </head>
@@ -57,9 +59,7 @@
   <header class="navbar is-fixed-top has-shadow">
     <div class="container">
       <div class="navbar-brand">
-        <a class="navbar-item" href="#">
-          <strong>CCTalker</strong>
-        </a>
+        <a class="navbar-item" href="#"><strong>CCTalker</strong></a>
         <a role="button" class="navbar-burger" data-target="navMenu" aria-label="menu" aria-expanded="false">
           <span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span>
         </a>
@@ -80,12 +80,8 @@
     <div class="hero-body">
       <div class="container has-text-centered">
         <h1 class="title is-1">CCTalker</h1>
-        <h2 class="subtitle is-4">
-          When Compensatory Control Theory Meets 3D Emotional Talking Head Animation
-        </h2>
-        <a href="#teaser" class="button is-primary is-medium" aria-label="Watch Demo">
-          Watch Demo
-        </a>
+        <h2 class="subtitle is-4">When Compensatory Control Theory Meets 3D Emotional Talking Head Animation</h2>
+        <a href="#teaser" class="button is-primary is-medium" aria-label="Watch Demo">Watch Demo</a>
       </div>
     </div>
   </section>
@@ -102,9 +98,7 @@
                 Your browser does not support the video tag.
               </video>
             </div>
-            <p class="has-text-centered">
-              Demos and comparisons with FaceDiffuser, ProbTalk3D, CodeTalker, FaceFormer…
-            </p>
+            <p class="has-text-centered">Demos and comparisons with FaceDiffuser, ProbTalk3D, CodeTalker, FaceFormer…</p>
           </div>
         </div>
       </div>
@@ -125,8 +119,8 @@
       <div class="container content">
         <h3 class="title is-4">Methodology</h3>
 
-        <!-- Method diagram -->
-        <figure class="image is-3by2">
+        <!-- Method diagram (single-column, not overstretched) -->
+        <figure class="method-figure">
           <img src="./paper_images/CCTalker.png" alt="Overview of CCTalker architecture: diffusion backbone plus CSM, CDE, IOM modules">
           <figcaption class="has-text-centered">
             <em>Figure 1.</em> CCTalker framework: (1) Control–Sense Modeling, (2) Compensatory Dynamic Enhancement, (3) Information Order Modeling.
@@ -168,9 +162,7 @@
   <!-- Footer -->
   <footer class="footer has-background-grey-darker has-text-white-ter">
     <div class="content has-text-centered">
-      <p>
-        © 2025 CCTalker • Licensed under <a class="has-text-white" href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>
-      </p>
+      <p>© 2025 CCTalker • Licensed under <a class="has-text-white" href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a></p>
     </div>
   </footer>
 
